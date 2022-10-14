@@ -44,12 +44,15 @@ def OptimalLongestSubstringWithKChars(S, K):
         else:
             char_map[cur_char] = char_map.get(cur_char) + 1
 
-        if len(char_map.keys()) == K:
-            maxL = max(maxL, right - left + 1)
-        elif len(char_map.keys()) > K:
-            char_map = {}
-            char_map[cur_char] = 1
-            left = right 
+        
+        while len(char_map.keys()) > K:
+            char_map[S[left]] -= 1
+            if char_map[S[left]] == 0:
+                del char_map[S[left]]
+
+            left += 1
+
+        maxL = max(maxL, right - left + 1)
     
     return maxL if maxL != float("-inf") else 0
 
