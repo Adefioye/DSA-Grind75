@@ -55,3 +55,4 @@ def spiral_order_II(n):
 
 # print(spiral_order_II(1))
 print(spiral_order_II(3))
+print(spiral_order_II(4))
