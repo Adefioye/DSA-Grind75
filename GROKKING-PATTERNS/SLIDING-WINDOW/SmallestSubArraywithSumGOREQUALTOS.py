@@ -1,9 +1,6 @@
-array1 = [2, 1, 5, 2, 3, 2]
-S1 = 7
-array2 = [2, 1, 5, 2, 8]
-S2 = 7
-array3 = [3, 4, 1, 1, 6]
-S3 = 8 
+array1 = [2, 1, 5, 2, 3, 2];  S1 = 7
+array2 = [2, 1, 5, 2, 8];     S2 = 7
+array3 = [3, 4, 1, 1, 6];     S3 = 8 
 
 # Brute force O(n^2)
 def BruteSmallestSubArrayWithSumGreaterOrEqualToS(A, S):
@@ -29,23 +26,16 @@ print(BruteSmallestSubArrayWithSumGreaterOrEqualToS(array3, S3))
 def OptimalSmallestSubArrayWithSumGreaterOrEqualToS(A, S):
     minL = float("inf")
     left = 0
-    right = 0
-    while right < len(A):
+    windowSum = 0
+    
+    for right in range(len(A)):
+        windowSum += A[right]
 
-        windowSum = sum(A[left : right + 1])
 
-        if windowSum >= S:
-
-            curL = right - left + 1 
-            minL = min(curL, minL)
-
-            if windowSum == S:
-                right += 1
-            else:
-                left += 1 
-
-        else:
-            right += 1
+        while windowSum >= S:
+            minL = min(minL, right - left + 1)
+            windowSum -= A[left]
+            left += 1
 
     return minL if minL != float("inf") else 0
 
