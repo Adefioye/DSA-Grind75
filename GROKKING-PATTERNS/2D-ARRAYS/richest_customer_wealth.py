@@ -1,7 +1,7 @@
 from typing import List 
 
 class Solution:
-    def maximumWealth(self, accounts: List[List[int]]) -> int:
+    def maximum_wealth(self, accounts: List[List[int]]) -> int:
         
         rows, cols = len(accounts), len(accounts[0])
         max_wealth = float("-inf")
