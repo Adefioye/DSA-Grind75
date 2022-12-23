@@ -5,11 +5,13 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         
-        
         0, 0, 0
         1, 0, 1
         0, 1, 2
         1, 1, 3
+
+        for 1, live if 2 or 3 live cells and die otherwise
+        for 0, live if 3 live cells and die otherwise
         """
         rows, cols = len(board), len(board[0])
         
