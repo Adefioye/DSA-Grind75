@@ -30,6 +30,8 @@ def removeDuplicates(array: List[int]) -> int:
 
     return l
 
+    
+
 print(removeDuplicates(A1))
 print(removeDuplicates(A2))
 

@@ -4,15 +4,17 @@ nums3 = [3,3]; target3 = 6        # [0, 1]
 
 def twoSum(nums, target):
 
-    numMap = {}
+    prevMap = {}
 
     for i, num in enumerate(nums):
 
-        if num in numMap:
-            return [numMap[num], i]
-        
         diff = target - num 
-        numMap[diff] = i
+
+        if diff not in prevMap:
+            prevMap[num] = i 
+        else:
+            return [prevMap[diff], i]
+
 
 print(twoSum(nums1, target1))
 print(twoSum(nums2, target2))
