@@ -18,19 +18,34 @@ A2 = [2, 2, 2, 11]          #2
 
 #     return len(array)
 
-def removeDuplicates(array: List[int]) -> int:
+# def removeDuplicates(array: List[int]) -> int:
 
-    l = 1 
+#     l = 1 
 
-    for r in range(1, len(array)):
+#     for r in range(1, len(array)):
 
-        if array[r] != array[r - 1]:
-            array[l] = array[r]
-            l += 1 
+#         if array[r] != array[r - 1]:
+#             array[l] = array[r]
+#             l += 1 
 
-    return l
+#     return l
 
-    
+def removeDuplicates(nums):
+
+    l = 0
+    r = l + 1
+
+    while r < len(nums):
+
+        if nums[l] != nums[r]:
+            nums[l + 1] = nums[r]
+            l += 1
+        
+        r += 1
+
+    return l + 1
+
+
 
 print(removeDuplicates(A1))
 print(removeDuplicates(A2))
