@@ -38,8 +38,8 @@ def removeDuplicates(nums):
     while r < len(nums):
 
         if nums[l] != nums[r]:
-            nums[l + 1] = nums[r]
             l += 1
+            nums[l] = nums[r]
         
         r += 1
 

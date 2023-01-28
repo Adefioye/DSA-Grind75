@@ -55,7 +55,7 @@ def optimalTripleSumToZero(array):
                 res.append([num, array[l], array[r]])
                 l += 1 
 
-                if array[l] == array[l - 1] and l < r:
+                while array[l] == array[l - 1] and l < r:
                     l += 1
 
     return res 

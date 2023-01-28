@@ -5,8 +5,8 @@ A3 = [1, 0, 1, 1]; t3=100   # 3
 
 def tripleSumCloseToTarget(array, target):
 
-    sumCloseToTargetSoFar = float("inf")
-    smallestTripletSum = float("inf")
+    minDiff = float("inf")
+    minTripletSum = float("inf")
 
     array.sort()
 
@@ -20,24 +20,26 @@ def tripleSumCloseToTarget(array, target):
 
         while l < r:
 
-            tripleSum = num + array[l] + array[r]
-            diff = abs(target - tripleSum)
+            tripletSum = num + array[l] + array[r]
+            diff = abs(target - tripletSum)
             
-            if diff < sumCloseToTargetSoFar:
-                sumCloseToTargetSoFar = diff 
-                smallestTripletSum = tripleSum
+            if diff < minDiff:
+                minDiff = diff 
+                minTripletSum = tripletSum 
+            elif diff == minDiff:
+                minTripletSum = min(tripletSum, minTripletSum)
 
-            if tripleSum > target:
-                r -= 1 
-            elif tripleSum < target:
-                l += 1 
+            if tripletSum < target:
+                l += 1
+            elif tripletSum > target:
+                r -= 1
             else:
-                l += 1 
+                l += 1
 
-                if array[l] == array[l - 1] and l < r:
+                while array[l - 1] == array[l] and l < r:
                     l += 1
 
-    return smallestTripletSum
+    return minTripletSum
 
 print(tripleSumCloseToTarget(A1, t1))
 print(tripleSumCloseToTarget(A2, t2))
