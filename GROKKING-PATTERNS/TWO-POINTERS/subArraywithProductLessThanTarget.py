@@ -6,26 +6,45 @@ r = 3
 2, 1
 
 """
-def subArrayWithProductLessThanTarget(array, target):
-    l = 0 
-    prod = 1 
-    res = []
+# def subArrayWithProductLessThanTarget(array, target):
+#     l = 0 
+#     prod = 1 
+#     res = []
 
-    for r in range(len(array)):
-        curNum = array[r]
+#     for r in range(len(array)):
+#         curNum = array[r]
 
-        prod *= curNum 
+#         prod *= curNum 
 
-        if curNum < target:
-            res.append([curNum]) 
+#         if curNum < target:
+#             res.append([curNum]) 
         
 
-        while prod >= target:
-            prod /= array[l]
+#         while prod >= target:
+#             prod /= array[l]
+#             l += 1
+
+#         if (r - l + 1 > 1):
+#             res.append(array[l:r+1])
+
+#     return res
+
+def subArrayWithProductLessThanTarget(A, T):
+
+    prod = 1
+    res = []
+    l = 0
+
+    for r, num in enumerate(A):
+
+        prod *= num
+
+        while prod >= T:
+            prod /= A[l]
             l += 1
 
-        if (r - l + 1 > 1):
-            res.append(array[l:r+1])
+        for i in range(l, r + 1):
+            res.append(A[i : r + 1])
 
     return res
 
