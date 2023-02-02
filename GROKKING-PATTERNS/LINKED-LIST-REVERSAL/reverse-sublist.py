@@ -1,5 +1,5 @@
 
-def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+def reverseBetween(head, left, right):
 
     current = head
     pos = 1
