@@ -1,42 +1,33 @@
-def reverseBetween(self, head, left, right):
 
-    beforeLeftPos = left - 1
-    afterRightPos = right + 1
-    pos = 1
+def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+
     current = head
-    beforeLeftNode = None
-    afterRightNode = None
+    pos = 1
+    startNode = head
 
-    while beforeLeftPos >= 1 and current != None and pos != left:
-
-        if pos == beforeLeftPos:
-            beforeLeftNode = current
-
+    while pos < left:
+        startNode = current
         current = current.next
         pos += 1
 
-    tail = current
-    prev = None
-    while current != None and pos != afterRightPos:
-        next = current.next
-        current.next = prev
-        prev = current
-        current = next
+    tailNode = current
+    prevNode = None
+
+    while pos >= left and pos <= right:
+        nextNode = current.next
+        current.next = prevNode
+        prevNode = current
+        current = nextNode
         pos += 1
 
-    afterRightNode = current
+    startNode.next = prevNode
+    tailNode.next = current
 
-    # Tack on the nodes
-    #
-
-    if beforeLeftNode and left > 1:
-        beforeLeftNode.next = prev 
-
-    if tail and afterRightNode:
-         tail.next = afterRightNode 
-
-    
     if left > 1:
         return head
 
-    return prev
+        
+    return prevNode
+
+
+
