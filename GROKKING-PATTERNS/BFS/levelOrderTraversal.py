@@ -9,7 +9,7 @@
 
 from collections import deque
 
-
+#SOLUTION 2
 def levelOrder(root):
 
     if root == None:
@@ -17,31 +17,59 @@ def levelOrder(root):
 
     queue = deque()
     queue.append(root)
-    totalCount = len(queue)
-    levelCount = 0
-    levelRes = []
     totalRes = []
 
-    while len(queue) > 0:
+    while queue:
+        levelRes = []
 
-        # Increse level count upon proccesing item from the queue
-        # and append value to result
-        current = queue.popleft()
-        levelCount += 1
-        levelRes.append(current.val)
+        for _ in range(len(queue)):
+            currentNode = queue.popleft()
+            levelRes.append(currentNode.val)
 
-        if current.left:
-            queue.append(current.left)
-        if current.right:
-            queue.append(current.right)
-
-        # After adding children, we check if level count is equal to total count
-        # Hence add level result to total res and re-instantiate res array and level count
-        # While also recomputing item on the queue which is to be processed in the next level
-        if levelCount == totalCount:
-            totalRes.append(levelRes)
-            levelRes = []
-            levelCount = 0
-            totalCount = len(queue)
+            if currentNode.left:
+                queue.append(currentNode.left)
+            if currentNode.right:
+                queue.append(currentNode.right)
+            
+        totalRes.append(levelRes)
 
     return totalRes
+
+
+
+    
+# def levelOrder(root):
+
+#     if root == None:
+#         return []
+
+#     queue = deque()
+#     queue.append(root)
+#     totalCount = len(queue)
+#     levelCount = 0
+#     levelRes = []
+#     totalRes = []
+
+#     while len(queue) > 0:
+
+#         # Increse level count upon proccesing item from the queue
+#         # and append value to result
+#         current = queue.popleft()
+#         levelCount += 1
+#         levelRes.append(current.val)
+
+#         if current.left:
+#             queue.append(current.left)
+#         if current.right:
+#             queue.append(current.right)
+
+#         # After adding children, we check if level count is equal to total count
+#         # Hence add level result to total res and re-instantiate res array and level count
+#         # While also recomputing item on the queue which is to be processed in the next level
+#         if levelCount == totalCount:
+#             totalRes.append(levelRes)
+#             levelRes = []
+#             levelCount = 0
+#             totalCount = len(queue)
+
+#     return totalRes
