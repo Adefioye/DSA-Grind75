@@ -7,32 +7,60 @@
 
 from collections import deque
 
+# SOLUTION 2
+def levelOrderBottom(root):
 
-def levelOrderBottom( root):
     if root == None:
         return []
 
     queue = deque()
     queue.append(root)
-    totalRes = deque()
-    levelRes = []
-    levelCount = 0
-    totalCount = len(queue)
+    totalRes = []
 
     while queue:
-        currentNode = queue.popleft()
-        levelCount += 1
-        levelRes.append(currentNode.val)
 
-        if currentNode.left:
-            queue.append(currentNode.left)
-        if currentNode.right:
-            queue.append(currentNode.right)
+        levelRes = []
 
-        if levelCount == totalCount:
-            totalRes.appendleft(levelRes)
-            levelRes = []
-            levelCount = 0
-            totalCount = len(queue)
+        for _ in range(len(queue)):
+            currentNode = queue.popleft()
+            levelRes.append(currentNode.val)
 
-    return totalRes
+            if currentNode.left:
+                queue.append(currentNode.left)
+            if currentNode.right:
+                queue.append(currentNode.right)
+
+        totalRes.append(levelRes)
+
+    return totalRes[::-1]
+
+
+
+# def levelOrderBottom( root):
+#     if root == None:
+#         return []
+
+#     queue = deque()
+#     queue.append(root)
+#     totalRes = deque()
+#     levelRes = []
+#     levelCount = 0
+#     totalCount = len(queue)
+
+#     while queue:
+#         currentNode = queue.popleft()
+#         levelCount += 1
+#         levelRes.append(currentNode.val)
+
+#         if currentNode.left:
+#             queue.append(currentNode.left)
+#         if currentNode.right:
+#             queue.append(currentNode.right)
+
+#         if levelCount == totalCount:
+#             totalRes.appendleft(levelRes)
+#             levelRes = []
+#             levelCount = 0
+#             totalCount = len(queue)
+
+#     return totalRes
