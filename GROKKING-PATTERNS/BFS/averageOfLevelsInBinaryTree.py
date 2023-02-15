@@ -7,7 +7,6 @@
 
 from collections import deque
 
-
 def averageOfLevels(root):
 
     if root == None:
@@ -16,26 +15,53 @@ def averageOfLevels(root):
     queue = deque()
     queue.append(root)
     totalRes = []
-    levelRes = []
-    levelCount = 0
-    totalCount = len(queue)
 
     while queue:
-        currentNode = queue.popleft()
-        levelCount += 1
-        levelRes.append(currentNode.val)
 
-        if currentNode.left:
-            queue.append(currentNode.left)
-        if currentNode.right:
-            queue.append(currentNode.right)
+        levelRes = []
 
-        if levelCount == totalCount:
-            average = sum(levelRes)/levelCount
-            totalRes.append(average)
+        for _ in range(len(queue)):
+            currentNode = queue.popleft()
+            levelRes.append(currentNode.val)
 
-            levelRes = []
-            levelCount = 0 
-            totalCount = len(queue)
-        
+            if currentNode.left:
+                queue.append(currentNode.left)
+            if currentNode.right:
+                queue.append(currentNode.right)
+
+        totalRes.append(sum(levelRes)/len(levelRes))
+
     return totalRes
+
+
+# def averageOfLevels(root):
+
+#     if root == None:
+#         return []
+
+#     queue = deque()
+#     queue.append(root)
+#     totalRes = []
+#     levelRes = []
+#     levelCount = 0
+#     totalCount = len(queue)
+
+#     while queue:
+#         currentNode = queue.popleft()
+#         levelCount += 1
+#         levelRes.append(currentNode.val)
+
+#         if currentNode.left:
+#             queue.append(currentNode.left)
+#         if currentNode.right:
+#             queue.append(currentNode.right)
+
+#         if levelCount == totalCount:
+#             average = sum(levelRes)/levelCount
+#             totalRes.append(average)
+
+#             levelRes = []
+#             levelCount = 0 
+#             totalCount = len(queue)
+        
+#     return totalRes
