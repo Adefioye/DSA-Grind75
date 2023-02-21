@@ -3,27 +3,54 @@ intervals2 = [[1,2],[3,5],[6,7],[8,10],[12,16]]; newInterval2 = [4,8]   #   [[1,
 
 
 def insert(intervals, newInterval):
-    res = []
+
+    output = []
 
     for i, interval in enumerate(intervals):
-        # Check if end of new interval is less than start of current interval
-        # Check if start of new interval is greater than end of current interval
-        # Merge if conditions above are false
 
-        if newInterval[1] < interval[0]:
-            res.append(newInterval)
-            return res + intervals[i:]
-        elif newInterval[0] > interval[1]:
-            res.append(interval)
+        s1, e1 = interval 
+        s2, e2 = newInterval
+
+        if s2 <= e1 and e2 >= s1:
+            # Merge
+            newInterval = [min(s1, s2), max(e1, e2)]
         else:
-            newInterval = [min(interval[0], newInterval[0]), max(interval[1], newInterval[1])]
+            # Add new interval or
+            # Add current interval
+            if s2 < s1:
+                output.append(newInterval)
+                return output + intervals[i:]
+            else:
+                output.append(interval)
+    
+    # In case there is no insertion of new interval
+    output.append(newInterval)
 
-    res.append(newInterval)
-        
-    return res
+    return output
+
 
 print(insert(intervals1, newInterval1))
 print(insert(intervals2, newInterval2))
+
+# def insert(intervals, newInterval):
+#     res = []
+
+#     for i, interval in enumerate(intervals):
+#         # Check if end of new interval is less than start of current interval
+#         # Check if start of new interval is greater than end of current interval
+#         # Merge if conditions above are false
+
+#         if newInterval[1] < interval[0]:
+#             res.append(newInterval)
+#             return res + intervals[i:]
+#         elif newInterval[0] > interval[1]:
+#             res.append(interval)
+#         else:
+#             newInterval = [min(interval[0], newInterval[0]), max(interval[1], newInterval[1])]
+
+#     res.append(newInterval)
+        
+#     return res
 
 
 
