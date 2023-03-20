@@ -3,25 +3,59 @@ nums1 = [1,1,2]
 nums2 = [1,2,3]
 # Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 
+# BEATS 99% of solution BACKTRACKING SOLUTION
+
 def uniquePermutations(nums):
+
     res = []
+    perm = []
+    count = {}
 
-    def backtrack(nums, path):
+    for num in nums:
+        if num not in count:
+            count[num] = 0 
+        count[num] += 1
 
-        if len(nums) == 0:
-            if path not in res:
-                res.append(path)
+    def backtrack():
 
-        for i in range(len(nums)):
-            backtrack(nums[:i] + nums[i+1:], path + [nums[i]])
+        if len(perm) == len(nums):
+            res.append(perm[:])
+            return
+        
+        for key in count:
 
-    backtrack(nums, [])
+            if count[key] > 0:
+                perm.append(key)
+                count[key] -= 1
+
+                backtrack()
+
+                perm.pop()
+                count[key] += 1
+
+    backtrack()
 
     return res
 
-
 print(uniquePermutations(nums1))
 print(uniquePermutations(nums2))
+
+# def uniquePermutations(nums):
+#     res = []
+
+#     def backtrack(nums, path):
+
+#         if len(nums) == 0:
+#             if path not in res:
+#                 res.append(path)
+
+#         for i in range(len(nums)):
+#             backtrack(nums[:i] + nums[i+1:], path + [nums[i]])
+
+#     backtrack(nums, [])
+
+#     return res
+
 
 # NON_BACKTRACKING SOLUTION
 
