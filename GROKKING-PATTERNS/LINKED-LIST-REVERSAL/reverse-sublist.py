@@ -20,6 +20,7 @@ def reverseBetween(head, left, right):
         current.next = prev 
         prev = current 
         current = nxt 
+        pos += 1
 
     prevLeftNode.next = prev 
     tailNode.next = current 
