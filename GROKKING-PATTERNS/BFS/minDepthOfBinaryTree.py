@@ -7,27 +7,50 @@
 
 from collections import deque
 
+# USING DFS 
 
 def minDepth(root):
 
-    if root == None:
-        return 0
+    minLevel = float("inf")
 
-    queue = deque()
-    queue.append(root)
-    depth = 0
+    def dfs(root, level):
+
+        if root is None:
+            return
         
-    while queue:
-        depth += 1
+        if root.left is None and root.right is None:
+            minLevel = min(minLevel, level)
+            return 
+        
+        dfs(root.left, level + 1)
+        dfs(root.right, level + 1)
 
-        for _ in range(len(queue)):
+    dfs(root, 1)
 
-            currentNode = queue.popleft()
+    return minLevel
+# USING BFS
+# def minDepth(root):
 
-            if currentNode.left == None and currentNode.right == None:
-                return depth 
-            if currentNode.left:
-                queue.append(currentNode.left)
-            if currentNode.right:
-                queue.append(currentNode.right)
+#     if root == None:
+#         return 0
+
+#     queue = deque()
+#     queue.append(root)
+#     depth = 0
+        
+#     while queue:
+#         depth += 1
+
+#         for _ in range(len(queue)):
+
+#             currentNode = queue.popleft()
+
+#             if currentNode.left == None and currentNode.right == None:
+#                 return depth 
+#             if currentNode.left:
+#                 queue.append(currentNode.left)
+#             if currentNode.right:
+#                 queue.append(currentNode.right)
+
+
                     
