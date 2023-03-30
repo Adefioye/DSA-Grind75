@@ -1,23 +1,43 @@
-#OPTIMAL SOLUTION
+
+## SECOND SOLUTION
 
 def sumNumbers(root):
 
-    return dfs(root, 0)
+    def dfs(root, pathSum, total):
 
-def dfs(root, pathSum):
+        if root is None:
+            return 0 
+        
+        if root.left is None and root.right is None:
+            total += (pathSum * 10 + root.val)
+            return total
+        
+        leftRes = dfs(root, pathSum * 10 + root.val, total)
+        rightRes = dfs(root, pathSum * 10 + root.val, total)
 
-    if root is None:
-        return 0
+        return leftRes + rightRes 
     
-    pathSum = (pathSum * 10) + root.val
+    return dfs(root, 0, 0)
+##FIRST SOLUTION
 
-    if root.left is None and root.right is None:
-        return pathSum
+# def sumNumbers(root):
 
-    leftRes = dfs(root.left, pathSum)
-    rightRes = dfs(root.right, pathSum)
+#     return dfs(root, 0)
 
-    return leftRes + rightRes
+# def dfs(root, pathSum):
+
+#     if root is None:
+#         return 0
+    
+#     pathSum = (pathSum * 10) + root.val
+
+#     if root.left is None and root.right is None:
+#         return pathSum
+
+#     leftRes = dfs(root.left, pathSum)
+#     rightRes = dfs(root.right, pathSum)
+
+#     return leftRes + rightRes
 
 
 #   NON OPTIMAL solution
