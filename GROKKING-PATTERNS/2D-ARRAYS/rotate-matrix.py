@@ -1,32 +1,56 @@
 from typing import List 
 
-class Solution:
-    def rotate(self, matrix: List[List[int]]) -> None:
-        """
-        Do not return anything, modify matrix in-place instead.
-        """
-        l, r = 0, len(matrix) - 1
+# Method 2 
+# This involves transposing the matrix and reversing every row of the matrix
+def rotate(matrix):
+    """
+    This is done in-place
+    """
+    # Transpose and reverse 
 
-        while l < r:
+    # Transpose 
+    for r in range(len(matrix)):
+        for c in range(r, len(matrix)):
+            temp = matrix[c][r]
+            matrix[c][r] = matrix[r][c]
+            matrix[r][c] = temp 
 
-            for i in range(r - l):
-                top, bottom = l, r
+    # Reverse 
+    for row in matrix:
+        row.reverse()
 
-                # Save top left item
-                top_left = matrix[top][l + i]
+    return matrix 
 
-                # Move bottom left to top left
-                matrix[top][l + i] = matrix[bottom - i][l]
 
-                # Move bottom right to bottom left 
-                matrix[bottom - i][l] = matrix[bottom][r - i]
 
-                # Move top right to bottom right 
-                matrix[bottom][r - i] = matrix[top + i][r]
+# Method 1 involving rotating the matrix by moving elements clockwisely along edges
+# class Solution:
+#     def rotate(self, matrix: List[List[int]]) -> None:
+#         """
+#         Do not return anything, modify matrix in-place instead.
+#         """
+#         l, r = 0, len(matrix) - 1
 
-                # Move top left to top right
-                matrix[top + i][r] = top_left
+#         while l < r:
 
-            l += 1
-            r -= 1
+#             for i in range(r - l):
+#                 top, bottom = l, r
+
+#                 # Save top left item
+#                 top_left = matrix[top][l + i]
+
+#                 # Move bottom left to top left
+#                 matrix[top][l + i] = matrix[bottom - i][l]
+
+#                 # Move bottom right to bottom left 
+#                 matrix[bottom - i][l] = matrix[bottom][r - i]
+
+#                 # Move top right to bottom right 
+#                 matrix[bottom][r - i] = matrix[top + i][r]
+
+#                 # Move top left to top right
+#                 matrix[top + i][r] = top_left
+
+#             l += 1
+#             r -= 1
 
