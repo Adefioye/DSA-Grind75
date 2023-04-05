@@ -7,48 +7,78 @@ nums3 = [10, 6, 4]; key3 = 10
 nums4 = [10, 6, 4]; key4 = 4
 # Output: 2
 
-
+# SECOND SOLUTION NEATER
 
 def orderAgnosticBinSearch(nums, target):
 
     l = 0 
     r = len(nums) - 1 
+    isAscending = nums[r] > nums[l]
 
     while l <= r:
 
-        mid = (l + r) // 2
-        if target > nums[mid]:
-            # Maybe go left or right 
-            temp = mid + 1 
-            while nums[mid] == nums[temp]:
-                temp += 1 
+        mid = (l + r) // 2 
 
-            if nums[temp] > nums[mid]:
-                # It means target is to right
-                l = mid + 1
-            else:
-                # target is to left
-                r = mid - 1
-        elif target < nums[mid]:
-            # Maybe go left or right 
-            temp = mid - 1 
-            while nums[mid] == nums[temp]:
-                temp -= 1 
-
-            if nums[temp] < nums[mid]:
-                # It means target is to left
-                r = mid - 1
-            else:
-                # target is to right
-                l = mid + 1
-        else:
+        if target == nums[mid]:
             return mid 
         
+        if isAscending:
+
+            if target > nums[mid]:
+                # move to right 
+                l = mid + 1
+            else:
+                r = mid - 1 
+        else:
+            if target > nums[mid]:
+                r = mid - 1 
+            else:
+                l = mid + 1
+
     return -1
 
 print(orderAgnosticBinSearch(nums1, key1))
 print(orderAgnosticBinSearch(nums2, key2))
 print(orderAgnosticBinSearch(nums3, key3))
 print(orderAgnosticBinSearch(nums4, key4))
+
+
+## FIRST SOLUTION
+# def orderAgnosticBinSearch(nums, target):
+
+#     l = 0 
+#     r = len(nums) - 1 
+
+#     while l <= r:
+
+#         mid = (l + r) // 2
+#         if target > nums[mid]:
+#             # Maybe go left or right 
+#             temp = mid + 1 
+#             while nums[mid] == nums[temp]:
+#                 temp += 1 
+
+#             if nums[temp] > nums[mid]:
+#                 # It means target is to right
+#                 l = mid + 1
+#             else:
+#                 # target is to left
+#                 r = mid - 1
+#         elif target < nums[mid]:
+#             # Maybe go left or right 
+#             temp = mid - 1 
+#             while nums[mid] == nums[temp]:
+#                 temp -= 1 
+
+#             if nums[temp] < nums[mid]:
+#                 # It means target is to left
+#                 r = mid - 1
+#             else:
+#                 # target is to right
+#                 l = mid + 1
+#         else:
+#             return mid 
+        
+#     return -1
 
 
