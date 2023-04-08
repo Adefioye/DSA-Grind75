@@ -39,9 +39,8 @@ def findElementInInfiniteSortedArray(reader, key):
     start, end = 0, 1 
 
     while key > reader.get(end):
-        newStart = end + 1
-        end += ((end - start + 1) * 2 )
-        start = newStart
+        start = end 
+        end = 2 * end
 
     return binarySearch(reader, key, start, end)
 
