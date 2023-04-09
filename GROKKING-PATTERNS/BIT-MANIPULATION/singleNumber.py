@@ -1,6 +1,6 @@
 nums = [2, 1, 2, 5, 6, 5, 7, 7, 6]
 
-def singleElementInUnsortedArray(nums):
+def singleNumber(nums):
     """
     Returns element that appears once in the unsorted array
     """
@@ -11,4 +11,4 @@ def singleElementInUnsortedArray(nums):
 
     return XOR
 
-print(singleElementInUnsortedArray(nums))
+print(singleNumber(nums))
