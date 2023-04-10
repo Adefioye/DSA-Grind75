@@ -3,20 +3,18 @@ nums1 = [1,2,3]
 nums2 = [0]
 # Output: [[],[0]]
 
-def subsets(nums):
+# def subsets(nums):
 
-    powerSet = [[]]
+#     powerSet = [[]]
 
-    for num in nums:
-        temps = [*powerSet]
+#     for num in nums:
+#         temps = [*powerSet]
 
-        for temp in temps:
-            powerSet.append(temp + [num])
+#         for temp in temps:
+#             powerSet.append(temp + [num])
 
-    return powerSet
+#     return powerSet
 
-print(subsets(nums1))
-print(subsets(nums2))
 
 
 ## RECURSIVE SOLUTION FOR SUBSETS
@@ -35,3 +33,26 @@ print(subsets(nums2))
 #         combsWithFirst.append(combWithFirst)
 
 #     return [*combsWithFirst, *combsWithoutFirst]
+
+## USING BIT MANIPULATION
+
+def subsets(nums):
+
+    length = len(nums)
+    numSubsets = (1 << length) 
+    subSets = []
+    for i in range(numSubsets):
+
+        subSet = []
+        for bit in range(length):
+
+            if (1 << bit) & i:
+                subSet.append(nums[bit])
+
+        subSets.append(subSet)
+
+    return subSets
+
+print(subsets(nums1))
+print(subsets(nums2))
+
