@@ -3,6 +3,20 @@ num1 = 8
 num2 = 10
 # Output: 5
 
+def complementOfDecimal(num):
+
+    bitCount, n = 0, num 
+
+    while n:
+        bitCount += 1 
+        n >>= 1 
+
+    allBitsSet = 2 ** bitCount - 1 
+
+    return num ^ allBitsSet
+
+print(complementOfDecimal(num1))
+print(complementOfDecimal(num2))
 
 ## BRUTE FORCE SOLUTION
 # def complementOfDecimal(num):
@@ -21,6 +35,3 @@ num2 = 10
     
 #     return int(binary[::-1], 2)
     
-
-print(complementOfDecimal(num1))
-print(complementOfDecimal(num2))
