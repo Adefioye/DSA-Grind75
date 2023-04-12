@@ -15,9 +15,12 @@ def fruitsInBasket(A):
             char_map[cur_char] = char_map[cur_char] + 1
             
         while len(char_map.keys()) > 2:
-            del char_map[A[left]]
+            char_map[A[left]] -= 1
+
+            if char_map[A[left]] == 0:
+                del char_map[A[left]]
+
             left += 1
-            maxL = max(maxL, right - left + 1)
 
         maxL = max(maxL, right - left + 1)
 
