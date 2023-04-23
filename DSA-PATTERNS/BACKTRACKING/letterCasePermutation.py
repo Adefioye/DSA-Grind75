@@ -3,28 +3,54 @@ s1 = "a1b2"
 s2 = "3z4"
 #Output: ["3z4","3Z4"]
 
-def letterCasePermutation(chars):
+## DFS BACKTRACKING SOLUTION
 
-    outputs = [""]
+def letterCasePermutation(s):
 
-    for char in chars:
-        temp = []
+    res = []
+
+    def dfs(i, path):
+
+        if len(path) == len(s):
+            res.append(path)
+            return 
+        
+        char = s[i]
 
         if char.isalpha():
-
-            for output in outputs:
-                temp.append(output + char.lower())
-                temp.append(output + char.upper())
+            dfs(i + 1, path + char.lower())
+            dfs(i + 1, path + char.upper())
         else:
-            for output in outputs:
-                temp.append(output + char)
+            dfs(i + 1, path + char)
 
-        outputs = temp 
+    dfs(0, "")
 
-    return outputs
+    return res 
+
 
 print(letterCasePermutation(s1))
 print(letterCasePermutation(s2))
+
+## ITERATIVE SOLUTION
+# def letterCasePermutation(chars):
+
+#     outputs = [""]
+
+#     for char in chars:
+#         temp = []
+
+#         if char.isalpha():
+
+#             for output in outputs:
+#                 temp.append(output + char.lower())
+#                 temp.append(output + char.upper())
+#         else:
+#             for output in outputs:
+#                 temp.append(output + char)
+
+#         outputs = temp 
+
+#     return outputs
 
 # def letterCasePermutation(chars: str):
 
