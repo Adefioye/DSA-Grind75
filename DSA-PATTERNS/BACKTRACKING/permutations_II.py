@@ -3,42 +3,64 @@ nums1 = [1,1,2]
 nums2 = [1,2,3]
 # Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 
-# BEATS 99% of solution BACKTRACKING SOLUTION
-
 def uniquePermutations(nums):
 
     res = []
-    perm = []
-    count = {}
+    nums.sort()
 
-    for num in nums:
-        if num not in count:
-            count[num] = 0 
-        count[num] += 1
+    def dfs(arr, path):
 
-    def backtrack():
-
-        if len(perm) == len(nums):
-            res.append(perm[:])
-            return
+        if len(arr) == 0:
+            res.append(path)
+            return 
         
-        for key in count:
+        for i in range(len(arr)):
 
-            if count[key] > 0:
-                perm.append(key)
-                count[key] -= 1
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue 
 
-                backtrack()
-
-                perm.pop()
-                count[key] += 1
-
-    backtrack()
+            dfs(arr[:i] + arr[i + 1:], path + [arr[i]])
+    
+    dfs(nums, [])
 
     return res
 
 print(uniquePermutations(nums1))
 print(uniquePermutations(nums2))
+
+
+# BEATS 99% of solution BACKTRACKING SOLUTION WITH HEASHMAP
+# def uniquePermutations(nums):
+
+#     res = []
+#     perm = []
+#     count = {}
+
+#     for num in nums:
+#         if num not in count:
+#             count[num] = 0 
+#         count[num] += 1
+
+#     def backtrack():
+
+#         if len(perm) == len(nums):
+#             res.append(perm[:])
+#             return
+        
+#         for key in count:
+
+#             if count[key] > 0:
+#                 perm.append(key)
+#                 count[key] -= 1
+
+#                 backtrack()
+
+#                 perm.pop()
+#                 count[key] += 1
+
+#     backtrack()
+
+#     return res
 
 # def uniquePermutations(nums):
 #     res = []
