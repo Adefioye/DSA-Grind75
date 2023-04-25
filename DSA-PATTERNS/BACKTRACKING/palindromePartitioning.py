@@ -5,34 +5,30 @@ s2 = "a"
 s3 = "efe"
 # Output: [["e", "f", "e"], ["efe"]]
 
+## SECOND SOLUTION
+
 def palindromePartitioning(s):
 
     res = []
-    comb = []
+    part = []
 
-    def backtrack(s):
+    def dfs(i):
 
-        if len(s) == 0:
-            res.append(comb[:])
+        if i >= len(s):
+            res.append(part[:])
             return 
         
-        for i in range(len(s)):
-            curSubString = s[:i + 1]
-            rest = s[i + 1:]
+        for j in range(i, len(s)):
+            if isPalindrome(s, i, j):
+                part.append(s[i : j + 1])
+                dfs(j + 1)
+                part.pop()
 
-            if isPalindrome(curSubString):
-                comb.append(curSubString)
-                backtrack(rest)
-                comb.pop()
-
-    backtrack(s)
+    dfs(0)
 
     return res
 
-def isPalindrome(s):
-
-    l = 0
-    r = len(s) - 1
+def isPalindrome(s, l, r):
 
     while l <= r:
 
@@ -47,3 +43,28 @@ def isPalindrome(s):
 print(palindromePartitioning(s1))
 print(palindromePartitioning(s2))
 print(palindromePartitioning(s3))
+
+## FIRST SOLUTION
+# def palindromePartitioning(s):
+
+#     res = []
+#     comb = []
+
+#     def backtrack(s):
+
+#         if len(s) == 0:
+#             res.append(comb[:])
+#             return 
+        
+#         for i in range(len(s)):
+#             curSubString = s[:i + 1]
+#             rest = s[i + 1:]
+
+#             if isPalindrome(curSubString):
+#                 comb.append(curSubString)
+#                 backtrack(rest)
+#                 comb.pop()
+
+#     backtrack(s)
+
+#     return res
