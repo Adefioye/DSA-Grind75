@@ -1,6 +1,8 @@
 """
 Compute x over y (Using addition, subtraction and shifting operator)
 
+time = O(n), where n = # of bits to represent x/y
+
 NB: The general idea is do the following
 1. Initialize quotient, res = 0
 2. Find k for which 2^k * y <= x
