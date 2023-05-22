@@ -1,3 +1,5 @@
+
+# time = O(log y)
 def power(x, y):
 
     res, power = 1, y 
