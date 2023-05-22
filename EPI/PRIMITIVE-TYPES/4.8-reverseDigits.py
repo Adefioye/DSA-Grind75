@@ -3,6 +3,7 @@ Instead of treating the integer inputs as a string. We can
 use modular arithmetic. By dividing input by 10
 """
 
+# time = O(n) where n = # of digits in input
 def reverseDigits(x):
 
     res, xRemainder = 0, abs(x)
