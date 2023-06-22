@@ -7,7 +7,7 @@ def reverseWords(str: str) -> str:
 
     s.reverse()
 
-    def reverse_range(s, l, r):
+    def reverseRange(s, l, r):
 
         while l < r:
             s[l], s[r] = s[r], s[l]
@@ -18,13 +18,13 @@ def reverseWords(str: str) -> str:
     while True:
         try:
             end = s.index(' ', start)
-            reverse_range(s, start, end - 1)
+            reverseRange(s, start, end - 1)
             start = end + 1
         except:
             break
             
         # Reverse final word 
-    reverse_range(s, start, len(s) - 1)
+    reverseRange(s, start, len(s) - 1)
     return "".join(s)
 
 print(reverseWords(s1))
