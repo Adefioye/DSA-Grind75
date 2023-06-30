@@ -9,22 +9,39 @@ NB: The general idea is do the following
 3. Add 2^k to res
 4. Update x as (x - (2^k * y)) 
 5. Continue step 2 - 4 until updated x < y
-"""
+# """
+
+# def divide(x, y):
+#     res, k = 0, 32 
+#     yPower = y << k 
+
+#     while x >= y:
+
+#         while yPower > x:
+#             yPower >>= 1 
+#             k -= 1 
+
+#         res += 1 << k 
+#         x -= yPower 
+
+#     return res 
 
 def divide(x, y):
-    res, k = 0, 32 
-    yPower = y << k 
+    k = 0
+    yPower = (2 ** k ) * y
+    res = 0 
 
     while x >= y:
 
-        while yPower > x:
-            yPower >>= 1 
-            k -= 1 
+        while yPower <= x:
+            k += 1 
+            yPower = (2 ** k ) * y
 
-        res += 1 << k 
-        x -= yPower 
+        res += (2 ** (k - 1))
+        x = x - ((2 ** (k - 1)) * y )
+        k = 0
 
-    return res 
+    return res
 
 print(divide(11, 2))    # 5
 print(divide(11, 3))    # 3
