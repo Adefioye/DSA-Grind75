@@ -1,30 +1,41 @@
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
 
-        def length(node):
+        l1, l2 = headA, headB
 
-            l = 0 
+        while l1 != l2:
+            l1 = l1.next if l1 else headB
+            l2 = l2.next if l2 else headA 
+        
+        return l1
 
-            while node:
-                l += 1 
-                node = node.next
+# class Solution:
+#     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
 
-            return l 
+#         def length(node):
 
-        sizehA, sizehB = length(headA), length(headB)
-        # We always want to make headB the node with higher length
+#             l = 0 
 
-        if sizehA > sizehB:
-            headA, headB = headB, headA 
+#             while node:
+#                 l += 1 
+#                 node = node.next
 
-        # Advance headB by the diff between the 2 
-        for _ in range(abs(sizehA - sizehB)):
-            headB = headB.next 
+#             return l 
 
-        while headA and headB and headA is not headB:
-            headA, headB = headA.next, headB.next 
+#         sizehA, sizehB = length(headA), length(headB)
+#         # We always want to make headB the node with higher length
 
-        if headA and headA == headB:
-            return headA 
+#         if sizehA > sizehB:
+#             headA, headB = headB, headA 
 
-        return None
+#         # Advance headB by the diff between the 2 
+#         for _ in range(abs(sizehA - sizehB)):
+#             headB = headB.next 
+
+#         while headA and headB and headA is not headB:
+#             headA, headB = headA.next, headB.next 
+
+#         if headA and headA == headB:
+#             return headA 
+
+#         return None
