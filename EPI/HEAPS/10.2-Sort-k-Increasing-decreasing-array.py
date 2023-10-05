@@ -1,5 +1,5 @@
-# merg
-# from 10.1-Merge-Sorted-Files import mergeSortedArrs;
+# # merg
+# from .10.1-Merge-Sorted-Files import mergeSortedArrs;
 from heapq import heappop, heappush, heapify
 
 def mergeSortedArrs(sortedArrays):
